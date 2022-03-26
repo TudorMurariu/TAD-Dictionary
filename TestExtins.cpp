@@ -145,6 +145,7 @@ void testSterge() {
 
 
 void testIterator() {
+	
 	Dictionar d;
 	IteratorDictionar id = d.iterator(); //iterator pe container vid
 	assert(id.valid() == false);

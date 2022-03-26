@@ -2,34 +2,56 @@
 #include <iostream>
 #include "IteratorDictionar.h"
 
+/// Teta(1)
 Nod::Nod(TElem e, PNod urm, PNod pre) {
+	/// constructor
 	this->e = e;
 	this->urm = urm;
+	this->pre = pre;
 }
 
+/// Teta(1)
 TElem Nod::element() {
 	return e;
 }
 
+/// Teta(1)
 PNod Nod::urmator() {
 	return urm;
 }
 
+/// Teta(1)
 PNod Nod::precedent() {
 	return this->pre;
 }
 
-
+/// Teta(1)
 Dictionar::Dictionar() {
+	/// constructor , setam inceputul cu null
 	this->Inceput = NULL;
 }
 
+/// Teta(n)
 Dictionar::~Dictionar() {
-	/* de adaugat */
+	/// trecem prim toate elementele ramase in lista pentru a le sterge din memorie
+	while (this->Inceput != nullptr)
+	{
+		PNod p = this->Inceput;
+		this->Inceput = this->Inceput->urm;
+		delete p;
+	}
 }
 
+/// caz favoranil : Teta(1)
+/// caz defavorabil : Teta(n)
+/// caz mediu : Teta(n)
+/// overall case : O(n)
 TValoare Dictionar::adauga(TCheie c, TValoare v){
-	/// 
+	/// Adaugam un element in dictionar daca acesta nu exista deja
+	/// daca cheia are deja o valoare ii schimbam valoarea
+	/// returnam valoarea cheii precedente sau NULL_TVALOARE daca cheia nu avea 
+	/// valoare
+	
 	TElem e;
 	e.first = c;
 	e.second = v;
@@ -61,7 +83,10 @@ TValoare Dictionar::adauga(TCheie c, TValoare v){
 	}
 
 	if (p->urm != nullptr)
+	{
 		p->urm->pre = newp;
+		newp->urm = p->urm;
+	}
 	p->urm = newp;
 	newp->pre = p;
 	
@@ -70,9 +95,13 @@ TValoare Dictionar::adauga(TCheie c, TValoare v){
 
 
 
-//cauta o cheie si returneaza valoarea asociata (daca dictionarul contine cheia) sau null
+/// caz favoranil : Teta(1)
+/// caz defavorabil : Teta(n)
+/// caz mediu : Teta(n)
+/// overall case : O(n)
 TValoare Dictionar::cauta(TCheie c) const{
-	///
+	/// Cautam in dictionar o cheie data
+	/// returnam NULL_TVALOARE daca nu exista cheia
 
 	PNod p = this->Inceput;
 	while (p != nullptr)
@@ -85,9 +114,15 @@ TValoare Dictionar::cauta(TCheie c) const{
 	return NULL_TVALOARE;
 }
 
-
+/// caz favoranil : Teta(1)
+/// caz defavorabil : Teta(n)
+/// caz mediu : Teta(n)
+/// overall case : O(n)
 TValoare Dictionar::sterge(TCheie c){
-	/// 
+	/// stergem o cheie din dinctionar daca aceasta exista
+	/// si ii returnam valoarea
+	/// daca nu exista returnam NULL_TVALOARE
+	/// + dam free la memoria stearsa
 
 	if (this->Inceput == nullptr)
 		return NULL_TVALOARE;
@@ -95,18 +130,26 @@ TValoare Dictionar::sterge(TCheie c){
 	PNod p = this->Inceput;
 	if (c == p->element().first)
 	{
+		PNod p_aux = this->Inceput;
+		TValoare aux = p->e.second;
 		this->Inceput = p->urm;
-		this->Inceput->pre = nullptr;
-		return p->e.second;
+		if(this->Inceput != nullptr)
+			this->Inceput->pre = nullptr;
+		delete p_aux;
+		return aux;
 	}
 
 	while (p->urmator() != nullptr)
 	{
 		if (c == p->element().first)
 		{
+			PNod p_aux = p;
 			TValoare aux = p->e.second;
 			p = p->pre;
+			if(p->urm->urm != nullptr)
+				p->urm->urm->pre = p;
 			p->urm = p->urm->urm;
+			delete p_aux;
 			return aux;
 		}
 		p = p->urmator();
@@ -114,15 +157,18 @@ TValoare Dictionar::sterge(TCheie c){
 
 	if (c == p->element().first)
 	{
+		PNod p_aux = p;
 		TValoare aux = p->e.second;
+		p->pre->urm = nullptr;
 		p = nullptr;
+		delete p_aux;
 		return aux;
 	}
 
 	return NULL_TVALOARE;
 }
 
-
+/// overall complexity : O(n)
 int Dictionar::dim() const {
 	/// Numaram in variabila dim numarul de elemente din lista inlantuita si 
 	/// returnam acest numar
@@ -138,14 +184,16 @@ int Dictionar::dim() const {
 	return dim;
 }
 
+/// Teta(1)
 bool Dictionar::vid() const{
 	/// Verificam daca disctionarul este vid
 	/// (verifica, daca inceputul listei este nullptr)
 	return this->Inceput == nullptr;
 }
 
-
+/// Teta(1)
 IteratorDictionar Dictionar::iterator() const {
+	// se returneaza iterator pe dictionar
 	return  IteratorDictionar(*this);
 }
 

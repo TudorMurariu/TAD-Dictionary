@@ -4,17 +4,18 @@
 
 using namespace std;
 
+/// Teta(1)
 IteratorDictionar::IteratorDictionar(const Dictionar& d) : dict(d){
-	this->p = nullptr;
+	this->p = this->dict.Inceput;
 }
 
-
+/// Teta(1)
 void IteratorDictionar::prim() {
 	/// Resetam iteratorul
 	this->p = this->dict.Inceput;
 }
 
-
+/// Teta(1)
 void IteratorDictionar::urmator() {
 	/// Trecem iteratorul la urmatorul nod din lista
 	/// Daca nu putem trece la urmatorul trimitem o eroare
@@ -25,7 +26,7 @@ void IteratorDictionar::urmator() {
 	this->p = this->p->urmator();
 }
 
-
+/// Teta(1)
 TElem IteratorDictionar::element() const{
 	/// Verificam daca iteratorul este valid
 	/// returnam valoarea elementului din container referit de iterator
@@ -36,7 +37,7 @@ TElem IteratorDictionar::element() const{
 	return this->p->element();
 }
 
-
+/// Teta(1)
 bool IteratorDictionar::valid() const {
 	/// Verificam daca iteratorul este valid(element al listei)
 	/// Ajunge sa verificam doar daca iteratorul nu este null
