@@ -10,11 +10,34 @@ class IteratorDictionar;
 #include <utility>
 typedef std::pair<TCheie,TValoare> TElem;
 
+//referire a clasei Nod
+class Nod;
+
+//se defineste tipul PNod ca fiind adresa unui Nod
+typedef Nod* PNod;
+
+class Nod
+{
+	public:
+		friend class Dictionar;
+		//constructor
+		Nod(TElem e, PNod urm,PNod pre);
+		TElem element();
+		PNod urmator();
+		PNod precedent();
+
+	private:
+
+		TElem e;
+		PNod urm;
+		PNod pre;
+};
+
 class Dictionar {
 	friend class IteratorDictionar;
 
 	private:
-	/* aici e reprezentarea */
+		PNod Inceput;
 
 	public:
 

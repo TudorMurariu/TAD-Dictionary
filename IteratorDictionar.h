@@ -13,6 +13,7 @@ private:
 	//contine o referinta catre containerul pe care il itereaza
 	const Dictionar& dict;
 	/* aici e reprezentarea specifica a iteratorului */
+	PNod p;
 
 public:
 

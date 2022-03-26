@@ -99,7 +99,7 @@ void testSterge() {
 		}
 	}
 	assert(d.dim() == 0);
-	//printD(d);
+	printD(d);
 
 	for (int i = -100; i <= 100; i = i + 2) { //adaugam elemente din 2 in 2
 		d.adauga(i,i);
@@ -113,7 +113,7 @@ void testSterge() {
 			assert(d.sterge(i) == NULL_TVALOARE);
 		}
 	}
-
+	
 	assert(d.dim() == 1);
 	//printD(d);
 
