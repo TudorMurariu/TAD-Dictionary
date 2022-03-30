@@ -29,6 +29,7 @@ PNod Nod::precedent() {
 Dictionar::Dictionar() {
 	/// constructor , setam inceputul cu null
 	this->Inceput = NULL;
+	this->len = 0;
 }
 
 /// Teta(n)
@@ -60,6 +61,7 @@ TValoare Dictionar::adauga(TCheie c, TValoare v){
 	if (this->Inceput == nullptr)
 	{
 		this->Inceput = newp;
+		this->len = 1;
 		return NULL_TVALOARE;
 	}
 
@@ -89,6 +91,7 @@ TValoare Dictionar::adauga(TCheie c, TValoare v){
 	}
 	p->urm = newp;
 	newp->pre = p;
+	this->len++;
 	
 	return NULL_TVALOARE;
 }
@@ -136,6 +139,7 @@ TValoare Dictionar::sterge(TCheie c){
 		if(this->Inceput != nullptr)
 			this->Inceput->pre = nullptr;
 		delete p_aux;
+		this->len--;
 		return aux;
 	}
 
@@ -150,6 +154,7 @@ TValoare Dictionar::sterge(TCheie c){
 				p->urm->urm->pre = p;
 			p->urm = p->urm->urm;
 			delete p_aux;
+			this->len--;
 			return aux;
 		}
 		p = p->urmator();
@@ -161,6 +166,7 @@ TValoare Dictionar::sterge(TCheie c){
 		TValoare aux = p->e.second;
 		p->pre->urm = nullptr;
 		p = nullptr;
+		this->len--;
 		delete p_aux;
 		return aux;
 	}
@@ -168,20 +174,11 @@ TValoare Dictionar::sterge(TCheie c){
 	return NULL_TVALOARE;
 }
 
-/// overall complexity : O(n)
+/// Teta(1)
 int Dictionar::dim() const {
-	/// Numaram in variabila dim numarul de elemente din lista inlantuita si 
-	/// returnam acest numar
+	/// returnam variabila care tine cont de lungime
 
-	int dim = 0;
-	PNod p = this->Inceput;
-	while (p != nullptr)
-	{
-		dim++;
-		p = p->urmator();
-	}
-
-	return dim;
+	return this->len;
 }
 
 /// Teta(1)

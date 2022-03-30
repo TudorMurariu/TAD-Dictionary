@@ -7,9 +7,9 @@ using namespace std;
 
 
 int main() {
-	//testAll();
+	testAll();
 	testAllExtins();
-	//test_colectiaValorilor();
+	test_colectiaValorilor();
 
 	cout << "That's all!" << endl;
 	return 0;

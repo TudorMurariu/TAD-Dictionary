@@ -41,7 +41,7 @@ class Dictionar {
 
 	private:
 		PNod Inceput;
-
+		int len;
 	public:
 
 	// constructorul implicit al dictionarului
