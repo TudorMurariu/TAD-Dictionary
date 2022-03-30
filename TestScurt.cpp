@@ -38,3 +38,18 @@ void testAll() { //apelam fiecare functie sa vedem daca exista
 
 }
 
+void test_colectiaValorilor()
+{
+	Dictionar d;
+	assert(d.adauga(5, 5) == NULL_TVALOARE);
+	assert(d.adauga(1, 2) == NULL_TVALOARE);
+	assert(d.adauga(2, 3) == NULL_TVALOARE);
+	assert(d.adauga(3, 7) == NULL_TVALOARE);
+	assert(d.adauga(4, 7) == NULL_TVALOARE);
+	vector<TValoare> v = d.colectiaValorilor();
+	assert(v[0] == 5);
+	assert(v[1] == 2);
+	assert(v[2] == 3);
+	assert(v[3] == 7);
+	assert(v[4] == 7);
+}

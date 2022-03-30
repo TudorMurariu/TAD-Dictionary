@@ -35,6 +35,7 @@ void testCreeaza() {
 	IteratorDictionar id = d.iterator(); //iterator pe multimea vida ar trebui sa fie invalid din start
 	assert(id.valid() == false);
 	//printD(d);
+	cout << 1 << endl;
 }
 
 
@@ -76,6 +77,7 @@ void testAdauga() {
 		d.adauga(i,i);
 	}
 	assert(d.dim()==20000);
+	cout << 2 << endl;
 }
 
 
@@ -139,7 +141,7 @@ void testSterge() {
 		}
 	}
 	assert(d.dim() == 0);
-
+	cout << 3 << endl;
  }
 
 
@@ -193,7 +195,7 @@ void testIterator() {
 		count++;
 	}
 	assert(count == 50);
-
+	cout << 4 << endl;
 }
 
 
@@ -225,6 +227,7 @@ void testQuantity() {//scopul e sa adaugam multe date
 		}
 	}
 	assert(d.dim() == 0);
+	cout << 5 << endl;
 }
 
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define NULL_TVALOARE -1
@@ -9,6 +9,9 @@ class IteratorDictionar;
 
 #include <utility>
 typedef std::pair<TCheie,TValoare> TElem;
+
+#include <vector>
+using namespace std;
 
 //referire a clasei Nod
 class Nod;
@@ -64,6 +67,8 @@ class Dictionar {
 	// se returneaza iterator pe dictionar
 	IteratorDictionar iterator() const;
 
+	// returneaza un vector cu toate valorile dictionarului
+	vector<TValoare> colectiaValorilor() const;
 
 	// destructorul dictionarului	
 	~Dictionar();

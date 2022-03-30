@@ -6,6 +6,7 @@ using namespace std;
 
 /// Teta(1)
 IteratorDictionar::IteratorDictionar(const Dictionar& d) : dict(d){
+	/// Constructor
 	this->p = this->dict.Inceput;
 }
 

@@ -197,4 +197,23 @@ IteratorDictionar Dictionar::iterator() const {
 	return  IteratorDictionar(*this);
 }
 
+/// caz favoranil : Teta(1)
+/// caz defavorabil : Teta(n)
+/// caz mediu : Teta(n)
+/// overall case : O(n)
+vector<TValoare> Dictionar::colectiaValorilor() const {
+	/*
+		Functia returneaza un vector cu valorile dictionarului.
+		Trecem prin toate elementele listei si esctragrem valoarea.
+	*/
+	vector<TValoare> vector_valori;
+	PNod p = this->Inceput;
+	while (p != nullptr)
+	{
+		vector_valori.push_back(p->element().second);
+		p = p->urmator();
+	}
+
+	return vector_valori;
+}
 
